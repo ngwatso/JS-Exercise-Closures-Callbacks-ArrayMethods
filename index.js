@@ -82,34 +82,47 @@ finalScore(inning, 9) might return:
 
 */
 
+let home = 0;
+let away = 0;
+
 function finalScore(cb1, innings) {
-  const inningScores = [];
-  let n = 1;
-  let teamScore = function () {
-    let teams = cb1();
-    const endGameScore = {
-      Home: teams[0],
-      Away: teams[1],
-    };
-    inningScores.push(`Inning #${n++}` (endGameScore));
-  };
-
   for (let i = 0; i < innings; i++) {
-    teamScore(i);
+    let teams = cb1();
+    home = home + teams[0];
+    away = away + teams[1];
   }
-  console.log(inningScores);
-
-  let a = inningScores.reduce(function (accumulator, currentValue) {
-    return accumulator + currentValue.Home;
-  }, 0);
-  console.log(`Home: ${a}`);
-  let b = inningScores.reduce(function (accumulator, currentValue) {
-    return accumulator + currentValue.Away;
-  }, 0);
-  console.log(`Away: ${b}`);
+  return `Final Score - Away Team: ${away} - Home Team: ${home}`;
 }
 
-finalScore(inning, 9);
+console.log(finalScore(inning, 9));
+
+// const inningScores = [];
+// let n = 1;
+// let teamScore = function () {
+//   let teams = cb1();
+//   const endGameScore = {
+//     Home: teams[0],
+//     Away: teams[1],
+//   };
+//   inningScores.push(endGameScore);
+// };
+
+// for (let i = 0; i < innings; i++) {
+//   teamScore(i);
+// }
+// console.log(inningScores);
+
+// let a = inningScores.reduce(function (accumulator, currentValue) {
+//   return accumulator + currentValue.Home;
+// }, 0);
+// let b = inningScores.reduce(function (accumulator, currentValue) {
+//   return accumulator + currentValue.Away;
+// }, 0);
+
+// console.log(`Final Score - Home: ${a} - Away: ${b}`);
+// }
+
+// finalScore(inning, 9);
 
 /* Task 4: 
 
@@ -134,12 +147,35 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 function scoreboard(cb1, cb2, num1) {
-  let allScores = [];
+  let allInnings = [];
   for (let i = 0; i < num1; i++) {
-    allScores.push(`Inning ${i + 1}: ${cb1(cb2, 1)}`);
+    allInnings.push(cb1(cb2, 1));
   }
-  console.log(allScores);
-  return allScores;
+  console.log(allInnings);
+
+  for (let j = 0; j < num1; j++) {
+    console.log(
+      `Inning #${j + 1}: Away Team: ${allInnings[j][1]} - Home Team: ${
+        allInnings[j][0]
+      }`
+    );
+  }
+  let a = allInnings.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue[1];
+  }, 0);
+  let b = allInnings.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue[0];
+  }, 0);
+
+  console.log(`Final Score - Home: ${b} - Away: ${a}`);
 }
+
+//   let allScores = [];
+//   for (let i = 0; i < num1; i++) {
+//     allScores.push(`Inning ${i + 1}: ${cb1(cb2, 1)}`);
+//   }
+//   console.log(allScores);
+//   return allScores;
+// }
 
 scoreboard(inning, finalScore, 9);
