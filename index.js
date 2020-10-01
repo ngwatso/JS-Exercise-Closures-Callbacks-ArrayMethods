@@ -96,34 +96,6 @@ function finalScore(cb1, innings) {
 
 console.log(finalScore(inning, 9));
 
-// const inningScores = [];
-// let n = 1;
-// let teamScore = function () {
-//   let teams = cb1();
-//   const endGameScore = {
-//     Home: teams[0],
-//     Away: teams[1],
-//   };
-//   inningScores.push(endGameScore);
-// };
-
-// for (let i = 0; i < innings; i++) {
-//   teamScore(i);
-// }
-// console.log(inningScores);
-
-// let a = inningScores.reduce(function (accumulator, currentValue) {
-//   return accumulator + currentValue.Home;
-// }, 0);
-// let b = inningScores.reduce(function (accumulator, currentValue) {
-//   return accumulator + currentValue.Away;
-// }, 0);
-
-// console.log(`Final Score - Home: ${a} - Away: ${b}`);
-// }
-
-// finalScore(inning, 9);
-
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
@@ -167,15 +139,7 @@ function scoreboard(cb1, cb2, num1) {
     return accumulator + currentValue[0];
   }, 0);
 
-  console.log(`Final Score - Home: ${b} - Away: ${a}`);
+  console.log(`Final Score - Away: ${a} - Home: ${b}`);
 }
-
-//   let allScores = [];
-//   for (let i = 0; i < num1; i++) {
-//     allScores.push(`Inning ${i + 1}: ${cb1(cb2, 1)}`);
-//   }
-//   console.log(allScores);
-//   return allScores;
-// }
 
 scoreboard(inning, finalScore, 9);
