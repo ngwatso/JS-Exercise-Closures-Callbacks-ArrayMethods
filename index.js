@@ -84,28 +84,29 @@ finalScore(inning, 9) might return:
 
 function finalScore(cb1, innings) {
   const inningScores = [];
+  let n = 1;
   let teamScore = function () {
     let teams = cb1();
     const endGameScore = {
       Home: teams[0],
       Away: teams[1],
     };
-    inningScores.push(endGameScore);
-    console.log(inningScores);
-
-    let a = inningScores.reduce(function (accumulator, currentValue) {
-      return accumulator + currentValue.Home;
-    }, 0);
-    console.log(`Home: ${a}`);
-    let b = inningScores.reduce(function (accumulator, currentValue) {
-      return accumulator + currentValue.Away;
-    }, 0);
-    console.log(`Away: ${b}`);
+    inningScores.push(`Inning #${n++}` (endGameScore));
   };
 
   for (let i = 0; i < innings; i++) {
     teamScore(i);
   }
+  console.log(inningScores);
+
+  let a = inningScores.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue.Home;
+  }, 0);
+  console.log(`Home: ${a}`);
+  let b = inningScores.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue.Away;
+  }, 0);
+  console.log(`Away: ${b}`);
 }
 
 finalScore(inning, 9);
@@ -135,10 +136,10 @@ Final Score: awayTeam - homeTeam */
 function scoreboard(cb1, cb2, num1) {
   let allScores = [];
   for (let i = 0; i < num1; i++) {
-    allScores.push(`Inning ${i + 1}: Home:${cb1(cb2)}`);
+    allScores.push(`Inning ${i + 1}: ${cb1(cb2, 1)}`);
   }
   console.log(allScores);
   return allScores;
 }
 
-console.log(scoreboard(inning, finalScore, 9));
+scoreboard(inning, finalScore, 9);
