@@ -59,13 +59,18 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/) {
-  /*Code Here*/
+function inning() {
+  let home = Math.round(Math.random() * 2);
+  let away = Math.round(Math.random() * 2);
+  return [home, away];
 }
+
+console.log(inning());
 
 /* Task 3: finalScore()
 
-Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
+Write a higher order function called `finalScore` that accepts the callback function `inning` (from above)
+ and a number of innings and and returns the final score of the game in the form of an object.
 
 For example, 
 
@@ -77,9 +82,33 @@ finalScore(inning, 9) might return:
 
 */
 
-function finalScore(/*code Here*/) {
-  /*Code Here*/
+function finalScore(cb1, innings) {
+  const inningScores = [];
+  let teamScore = function () {
+    let teams = cb1();
+    const endGameScore = {
+      Home: teams[0],
+      Away: teams[1],
+    };
+    inningScores.push(endGameScore);
+    console.log(inningScores);
+
+    let a = inningScores.reduce(function (accumulator, currentValue) {
+      return accumulator + currentValue.Home;
+    }, 0);
+    console.log(`Home: ${a}`);
+    let b = inningScores.reduce(function (accumulator, currentValue) {
+      return accumulator + currentValue.Away;
+    }, 0);
+    console.log(`Away: ${b}`);
+  };
+
+  for (let i = 0; i < innings; i++) {
+    teamScore(i);
+  }
 }
+
+finalScore(inning, 9);
 
 /* Task 4: 
 
